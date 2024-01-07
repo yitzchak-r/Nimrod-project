@@ -2,6 +2,8 @@ import { Routes, Route } from 'react-router-dom';
 import HomePage from '../pages/HomePage/HomePage';
 import MatchingClothes from '../pages/MatchingClothes/MatchingClothes';
 import ClothesThatFit from '../pages/ClothesThatFit/ClothesThatFit';
+import Login from '../pages/Login/Login';
+import SignIn from '../pages/SignIn/SignIn';
 
 const RouterDom = () => {
   const NotFoundPage = () => <div>404 Not Found</div>;
@@ -9,6 +11,9 @@ const RouterDom = () => {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
+      <Route path="/Login" element={<Login/> } />
+      <Route path="/SignIn" element={<SignIn />} />
+
       <Route path="/matchingClothes" element={<MatchingClothes />} />
       <Route
         path="/ClothesThatFit"
