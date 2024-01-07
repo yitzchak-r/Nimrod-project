@@ -1,5 +1,4 @@
 
-// 404.tsx
 
 import React from 'react';
 
