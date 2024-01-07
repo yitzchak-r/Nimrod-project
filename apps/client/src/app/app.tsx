@@ -1,4 +1,4 @@
-import Navbar from "./componetes/Layout/Navbar/Navbar";
+import NavbarNotLogin from "./componetes/Layout/NavbarNotLogin/NavbarNotLogin";
 import Footer from "./componetes/Layout/footer/Footer";
 import RouterDom from "./componetes/router/RouterDOM";
 
@@ -6,7 +6,7 @@ import RouterDom from "./componetes/router/RouterDOM";
 export function App() {
   return (
     <div>
-      <Navbar/>
+      <NavbarNotLogin/>
       <RouterDom/>
       <Footer/>
 

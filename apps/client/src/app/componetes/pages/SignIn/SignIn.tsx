@@ -1,5 +1,5 @@
 import styles from "./signIn.module.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 // import axios from 'axios';
 // import { error } from 'console';
@@ -65,8 +65,9 @@ export function SignIn(props: HelloProps) {
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-              התחברות לחשבונך
-            </h2>
+            Open a new account</h2>
+            <h2 className="mt-0 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+            No monthly payment fees        </h2>
           </div>
 
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -142,6 +143,11 @@ export function SignIn(props: HelloProps) {
                 >
                   login
                 </button>
+                <div className="flex items-center justify-center mt-4">
+        <Link to="/login" className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
+          Already have an account? Log in here.
+        </Link>
+      </div>
               </div>
             </form>
           </div>

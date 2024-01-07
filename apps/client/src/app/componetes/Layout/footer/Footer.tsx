@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-gray-200 py-4 mt-auto">
+    <footer className="bg-gray-200 py-4 mt-auto fixed bottom-0 w-full">
       <div className="container mx-auto text-center">
         <p className="text-gray-600">
           © 2023 FashionAdviceDaily.com. All rights reserved.
@@ -25,4 +25,3 @@ const Footer: React.FC = () => {
 };
 
 export default Footer;
-
