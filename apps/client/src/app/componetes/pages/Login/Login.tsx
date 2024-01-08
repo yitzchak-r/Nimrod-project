@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useAtom } from 'jotai';
@@ -33,7 +32,7 @@ export function Login() {
 
     try {
       // Replace "YOUR_API_LOGIN_ENDPOINT" with your actual API endpoint
-      const response = await fetch('YOUR_API_LOGIN_ENDPOINT', {
+      const response = await fetch('URL_LOCAL_POSTGRAS', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -51,11 +50,15 @@ export function Login() {
         console.error('התחברות נכשלה');
         setLoginStatus('error');
         setErrorMessage('שם משתמש או סיסמה שגויים');
+        
       }
     } catch (error) {
+
       console.error('שגיאה במהלך התחברות:', error);
       setLoginStatus('error');
       setErrorMessage('שגיאה במהלך התחברות');
+
+      
     }
   };
 
@@ -124,8 +127,16 @@ export function Login() {
           <p className="text-red-500 text-sm mt-2">{errorMessage}</p>
         )}
       </div>
+      
     </div>
   );
 }
 
 export default Login;
+
+// להוסיף איפוס סיסמה
+{/* <div className="text-sm">
+<a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+ forget password
+</a>
+</div> */}
