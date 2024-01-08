@@ -1,10 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
-import HomePage from '../pages/HomePage/HomePage';
-import MatchingClothes from '../pages/MatchingClothes/MatchingClothes';
-import ClothesThatFit from '../pages/ClothesThatFit/ClothesThatFit';
-import Login from '../pages/Login/Login';
-import SignIn from '../pages/SignIn/SignIn';
-import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
+import HomePage from '../../pages/HomePage/HomePage';
+import MatchingClothes from '../../pages/MatchingClothes/MatchingClothes';
+import ClothesThatFit from '../../pages/ClothesThatFit/ClothesThatFit';
+import Login from '../../pages/Login/Login';
+import SignIn from '../../pages/SignIn/SignIn';
+import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage';
 
 const RouterDom = () => {
   // const NotFoundPage = () => <div>404 Not Found</div>;

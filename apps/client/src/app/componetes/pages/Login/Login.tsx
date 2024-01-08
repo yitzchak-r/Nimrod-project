@@ -17,28 +17,37 @@ export function Login() {
   const [errorMessage, setErrorMessage] = useAtom(errorMessageAtom);
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm<FormDataSignIn>();
-  const hello = tRPCclient.users.hello.query;
 
-  const handleSignInClick = async () => {
-    console.log('test');
-    const res = await hello();
-    console.log(res);
-    navigate('/SignIn');
-  };
+
+
+  // const handleSignInClick = async () => {
+  //   navigate('/SignIn');
+  // };
+
+
+
 
   const handleSignIn = async (data: FormDataSignIn) => {
     setLoginStatus('loading');
     setErrorMessage('');
 
+
+
     try {
       // Replace "YOUR_API_LOGIN_ENDPOINT" with your actual API endpoint
-      const response = await fetch('URL_LOCAL_POSTGRAS', {
+      const response = await fetch('YOUR_API_LOGIN_ENDPOINT', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
       });
+
+
+
+
+
+
 
       const result = await response.json();
 
@@ -61,6 +70,11 @@ export function Login() {
       
     }
   };
+
+
+
+
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-cover">
@@ -111,6 +125,7 @@ export function Login() {
           <div>
             <button
               type="submit"
+              // onClick={handleSignInClick}
               className="flex w-full justify-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Login

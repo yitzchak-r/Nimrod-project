@@ -29,11 +29,13 @@ export function SignIn(props: HelloProps) {
     try {
       if (data.password !== data.passwordConfirmation) {
         console.error('הסיסמה ואימות הסיסמה אינם תואמים');
-        return;
+        return        
+        ;
       }
 
       if (!isValidEmail(data.email) || !isValidPassword(data.password)) {
         console.error('אימייל או סיסמה לא תקינים');
+        // setIsValid(true)
         return;
       }
 
@@ -43,6 +45,9 @@ export function SignIn(props: HelloProps) {
         return;
       }
 
+      const test = await hello({ email: data.email, password: data.password });
+      console.log(test);
+      
 
 
 
@@ -167,7 +172,7 @@ export function SignIn(props: HelloProps) {
                 <button
                   type="submit"
                   className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                  disabled={!isValid}
+                  // disabled={!isValid}
                 >
                   Sign Up
                 </button>

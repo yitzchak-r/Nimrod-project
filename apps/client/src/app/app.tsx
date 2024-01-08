@@ -1,6 +1,6 @@
 import NavbarNotLogin from "./componetes/Layout/NavbarNotLogin/NavbarNotLogin";
 import Footer from "./componetes/Layout/footer/Footer";
-import RouterDom from "./componetes/router/RouterDOM";
+import RouterDom from "./componetes/router/routerDOM/RouterDOM";
 
 
 export function App() {
