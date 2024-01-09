@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, Route, Routes, useNavigate } from 'react-router-dom';
+import Navbar from '../../Layout/Navbar/Navbar';
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
@@ -9,10 +10,15 @@ const HomePage: React.FC = () => {
   };
 
   return (
+
+    
     <div className="bg-gray-200 p-8">
       <h1 className="text-4xl font-bold mb-4">
         Welcome to Fashion Advice Daily
       </h1>
+
+
+
       <nav>
         <ul className="flex space-x-4">
           <li>
