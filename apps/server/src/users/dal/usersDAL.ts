@@ -10,8 +10,9 @@ export const userSignIn = async (user: uoersType) => {
       console.error('Invalid creadentials');
       throw new Error('Invalid creadentials');
     }
-    const newUser = await users.create(user);
     user.password = await hash(user.password, 10);
+    const newUser = await users.create(user);
+    
     return newUser;
   } catch (error) {
     console.log(error);

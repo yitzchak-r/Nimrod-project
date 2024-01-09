@@ -1,81 +1,57 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
+import { FieldValues, useForm } from 'react-hook-form';
 import { useAtom } from 'jotai';
 import { atom } from 'jotai';
 import tRPCclient from '../../../utils/tRPC';
 
-interface FormDataSignIn {
-  email: string;
-  password: string;
-}
+
+export interface HelloProps {}
+
 
 const loginStatusAtom = atom('idle');
 const errorMessageAtom = atom('');
 
-export function Login() {
+export function Login(props: HelloProps) {
   const [loginStatus, setLoginStatus] = useAtom(loginStatusAtom);
   const [errorMessage, setErrorMessage] = useAtom(errorMessageAtom);
   const navigate = useNavigate();
-  const { register, handleSubmit } = useForm<FormDataSignIn>();
+  const { register, handleSubmit } = useForm<FieldValues>();
 
 
 
   // const handleSignInClick = async () => {
   //   navigate('/SignIn');
   // };
+  // onClick={handleSignInClick}
 
 
 
 
-  const handleSignIn = async (data: FormDataSignIn) => {
+  const handleSignIn = async (data: FieldValues) => {
     setLoginStatus('loading');
     setErrorMessage('');
 
-
+    const hello = tRPCclient.users.login.query;
 
     try {
-      // Replace "YOUR_API_LOGIN_ENDPOINT" with your actual API endpoint
-      const response = await fetch('YOUR_API_LOGIN_ENDPOINT', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
 
+      const user = await hello({ email: data.email, password: data.password });
 
-
-
-
-
-
-      const result = await response.json();
-
-      if (result.user) {
+      if (!user) {
+        console.log('התחברות נכשלה');
+        setLoginStatus('error');
+        setErrorMessage('הסיסמה או המייל לא נכונים');
+      } else {
         console.log('התחברות מוצלחת');
         setLoginStatus('success');
-        navigate('/dashboard');
-      } else {
-        console.error('התחברות נכשלה');
-        setLoginStatus('error');
-        setErrorMessage('שם משתמש או סיסמה שגויים');
-        
+        navigate('/registeredUser');
       }
     } catch (error) {
-
-      console.error('שגיאה במהלך התחברות:', error);
+      // console.error('שגיאה במהלך התחברות:', error);
       setLoginStatus('error');
       setErrorMessage('שגיאה במהלך התחברות');
-
-      
     }
   };
-
-
-
-
-
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-cover">
       <div className="bg-white p-8 rounded-md w-full max-w-md">
