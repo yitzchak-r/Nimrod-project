@@ -10,10 +10,7 @@ const ResetPassword: React.FC<ResetPasswordProps> = () => {
   const [isSuccess, setIsSuccess] = useState(false);
 
   const handleResetPassword = async () => {
-    // Add logic to send a reset password link to the provided email
-    // This can involve making an API call or dispatching an action depending on your setup
-
-    // Simulating a successful reset for demonstration purposes
+// לחפש אתר שעושה שליחת מייל
     setIsSuccess(true);
   };
 

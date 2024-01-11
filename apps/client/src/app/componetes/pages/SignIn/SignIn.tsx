@@ -1,10 +1,8 @@
 import styles from './signIn.module.css';
 import { Link, useNavigate } from 'react-router-dom';
-import { useForm, FieldValues } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import tRPCclient from '../../../utils/tRPC';
 import { useState } from 'react';
-
-
 
 export interface HelloProps {}
 
@@ -17,48 +15,55 @@ interface FormDataSignIn {
 export function SignIn(props: HelloProps) {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm<FormDataSignIn>();
-  const [isValid, setIsValid] = useState(false); // Add proper validation logic here
+  const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordConfirmation, setShowPasswordConfirmation] = useState(false);
 
-  
-  
+  const hello = tRPCclient.users.SignIn.mutate;
 
-  const hello = tRPCclient.users.SignIn.mutate
-
+  const togglePasswordVisibility = (field: 'password' | 'passwordConfirmation') => {
+    if (field === 'password') {
+      setShowPassword(!showPassword);
+    } else if (field === 'passwordConfirmation') {
+      setShowPasswordConfirmation(!showPasswordConfirmation);
+    }
+  };
 
   const handleSignIn = async (data: FormDataSignIn) => {
     try {
       if (data.password !== data.passwordConfirmation) {
         console.error('הסיסמה ואימות הסיסמה אינם תואמים');
-        return        
-        ;
+        // Display error message to the user
+        alert('הסיסמה ואימות הסיסמה אינם תואמים');
+        return;
       }
 
       if (!isValidEmail(data.email) || !isValidPassword(data.password)) {
         console.error('אימייל או סיסמה לא תקינים');
-        // setIsValid(true)
+        // Display error message to the user
+        alert('אימייל או סיסמה לא תקינים');
         return;
       }
 
       const isEmailExists = await checkEmailExistence(data.email);
       if (isEmailExists) {
         console.error('האימייל כבר קיים במערכת');
+        // Display error message to the user
+        alert('האימייל כבר קיים במערכת');
         return;
       }
 
       const test = await hello({ email: data.email, password: data.password });
       console.log(test);
-      
 
-
+      // Redirect to the login page after successful registration
+      navigate('/login');
 
     } catch (error) {
       console.error("שגיאה במהלך התחברות:", error);
+      // Display a generic error message to the user
+      alert("שגיאה במהלך התחברות");
     }
-  
-   
   };
-
-
 
   const isValidEmail = (email: string): boolean => {
     // Add email validation logic here if needed
@@ -75,18 +80,6 @@ export function SignIn(props: HelloProps) {
     return false;
   };
 
-  // const onSubmit = (data: FieldValues) => {
-  //   try {
-  //     handleSignIn(data.ma);
-  //   } catch (error) {
-  //     console.error('Error submitting form:', error);
-  //   }
-
-
-  //   console.log("Email:", data.email);
-  //   console.log("Password:", data.password);
-  // };
-
   return (
     <div
       className={`min-h-screen flex items-center justify-center bg-cover ${styles.page}`}
@@ -102,14 +95,6 @@ export function SignIn(props: HelloProps) {
             </h2>
           </div>
 
-
-
-
-
-
-
-
-
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <form onSubmit={handleSubmit(handleSignIn)} className="space-y-6">
               <div>
@@ -117,7 +102,7 @@ export function SignIn(props: HelloProps) {
                   htmlFor="email"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  email
+                  Email
                 </label>
                 <div className="mt-2">
                   <input
@@ -132,47 +117,61 @@ export function SignIn(props: HelloProps) {
               </div>
 
               <div>
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Password
+                </label>
                 <div className="flex items-center justify-between">
-                  <label
-                    htmlFor="password"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
-                    password
-                  </label>
-                </div>
-                <div className="mt-2">
                   <input
                     id="password"
-                    type="password"
+                    type={showPassword ? 'text' : 'password'}
                     autoComplete="current-password"
                     required
                     {...register('password')}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
+                  <button
+                    type="button"
+                    className="ml-2 text-gray-500 cursor-pointer focus:outline-none"
+                    onClick={() => togglePasswordVisibility('password')}
+                  >
+                    {showPassword ? 'Hide' : 'Show'}
+                  </button>
                 </div>
               </div>
-              <div className="flex items-center justify-between">
+
+              <div>
                 <label
-                  htmlFor="password"
+                  htmlFor="passwordConfirmation"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
                   Password Confirmation
                 </label>
-                <input
-                  id="confirmPassword"
-                  type="password"
-                  autoComplete="current-password"
-                  required
-                  {...register('passwordConfirmation')}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
+                <div className="flex items-center justify-between">
+                  <input
+                    id="confirmPassword"
+                    type={showPasswordConfirmation ? 'text' : 'password'}
+                    autoComplete="current-password"
+                    required
+                    {...register('passwordConfirmation')}
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                  <button
+                    type="button"
+                    className="ml-2 text-gray-500 cursor-pointer focus:outline-none"
+                    onClick={() => togglePasswordVisibility('passwordConfirmation')}
+                  >
+                    {showPasswordConfirmation ? 'Hide' : 'Show'}
+                  </button>
+                </div>
               </div>
 
               <div>
                 <button
                   type="submit"
                   className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                  // disabled={!isValid}
                 >
                   Sign Up
                 </button>
@@ -191,5 +190,6 @@ export function SignIn(props: HelloProps) {
       </div>
     </div>
   );
-  }
+}
+
 export default SignIn;
