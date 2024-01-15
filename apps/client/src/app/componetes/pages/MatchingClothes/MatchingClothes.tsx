@@ -47,24 +47,37 @@ const MatchingClothes: React.FC = () => {
   };
 
   return (
-    <div className="bg-gray-100 p-8 rounded-md shadow-md h-screen flex flex-col justify-center items-center">
+<div className="bg-gray-100 p-8 rounded-md shadow-md h-screen flex flex-col justify-center items-center" style={{ backgroundImage: 'url("https://th.bing.com/th/id/OIG.vCAYZzmk_EQoX0l06_Zv?pid=ImgGn")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
       <h1 className="text-4xl font-bold mb-6 text-center">Matching Clothes</h1>
 
+
       {!loading && !gender && (
-        <div className="mb-4 flex">
+        <div className="mb-4 flex flex-col items-center">
           <p className="block font-bold mb-2 text-sm">Choose Gender:</p>
-          <button
-            onClick={() => handleGenderSelection('Men')}
-            className="gender-button bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mx-2"
-          >
-            Men
-          </button>
-          <button
-            onClick={() => handleGenderSelection('Women')}
-            className="gender-button bg-pink-500 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded mx-2"
-          >
-            Women
-          </button>
+          <div className="flex justify-around w-3/4">
+            <button
+              onClick={() => handleGenderSelection('Men')}
+              className="gender-button flex flex-col items-center bg-blue-250 hover:bg-blue-500 text-white font-bold py-6 px-7 rounded my-2"
+            >
+              <img
+                src="https://th.bing.com/th/id/OIG.FOWKlzED4R4zZ9huj7_D?w=270&h=270&c=6&r=0&o=5&pid=ImgGn"
+                alt="Male"
+                className="w-100 h-100 mb-2"
+              />
+              Men
+            </button>
+            <button
+              onClick={() => handleGenderSelection('Women')}
+              className="gender-button flex flex-col items-center bg-pink-250 hover:bg-pink-500 text-white font-bold py-7 px-7 rounded my-2"
+            >
+              <img
+                src="https://th.bing.com/th/id/OIG.S.Qyj79jCFnjGG2m8mSU?w=270&h=270&c=6&r=0&o=5&pid=ImgGn"
+                alt="Female"
+                className="w-100 h-100 mb-2"
+              />
+              Women
+            </button>
+          </div>
         </div>
       )}
 

@@ -5,18 +5,17 @@ import ClothesThatFit from '../../pages/ClothesThatFit/ClothesThatFit';
 import Login from '../../pages/Login/Login';
 import SignIn from '../../pages/SignIn/SignIn';
 import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage';
-import NavbarNotLogin from '../../Layout/NavbarNotLogin/NavbarNotLogin';
-import Footer from '../../Layout/footer/Footer';
-import Navbar from '../../Layout/Navbar/Navbar';
 import ResetPassword from '../../pages/ResetPassword/ResetPassword';
+import MainComponent from '../../pages/MainComponent/MainComponent';
 
 const RouterDom = () => {
-  // const NotFoundPage = () => <div>404 Not Found</div>;
 
   return (
     <Routes>
-      <Route path="/" element={<><HomePage /><Footer/></>} />
-      <Route path="/registeredUser" element={<><HomePage /><Footer/></>} />
+            <Route path="/" element={<MainComponent/>} />
+
+      {/* <Route path="/" element={<><HomePage /></>} /> */}
+      <Route path="/registeredUser" element={<><HomePage /></>} />
       <Route path="/Login" element={<Login/> } />
 
       <Route path="/resetPassword" element={<ResetPassword/> } />

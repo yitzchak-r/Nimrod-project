@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 export interface HelloProps {}
 
-const loginStatusAtom = atom('idle');
+export const loginStatusAtom = atom('idle');
 const errorMessageAtom = atom('');
 
 export function Login(props: HelloProps) {

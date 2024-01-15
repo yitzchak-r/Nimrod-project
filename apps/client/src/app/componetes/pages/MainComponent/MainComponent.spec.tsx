@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import NavbarNotLogin from './NavbarNotLogin';
+import MainComponent from './MainComponent';
 
-describe('NavbarNotLogin', () => {
+describe('MainComponent', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<NavbarNotLogin />);
+    const { baseElement } = render(<MainComponent />);
     expect(baseElement).toBeTruthy();
   });
 });
