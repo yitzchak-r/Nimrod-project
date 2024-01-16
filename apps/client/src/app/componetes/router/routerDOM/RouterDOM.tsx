@@ -15,7 +15,9 @@ const RouterDom = () => {
             <Route path="/" element={<MainComponent/>} />
 
       {/* <Route path="/" element={<><HomePage /></>} /> */}
+      {/* <Route path="/registeredUser" element={<><HomePage /></>} /> */}
       <Route path="/registeredUser" element={<><HomePage /></>} />
+
       <Route path="/Login" element={<Login/> } />
 
       <Route path="/resetPassword" element={<ResetPassword/> } />

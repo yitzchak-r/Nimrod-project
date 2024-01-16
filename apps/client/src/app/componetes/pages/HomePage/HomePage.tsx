@@ -1,5 +1,9 @@
-import React from 'react';
-import {  useNavigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import {  Navigate, useNavigate } from 'react-router-dom';
+
+
+
+
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
@@ -12,13 +16,22 @@ const HomePage: React.FC = () => {
     backgroundImage: 'url("https://th.bing.com/th/id/OIG.1vHtaRcHFkP2yc3SzFcr?pid=ImgGn")',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    height: '100vh', // Set the height of the background image container
+    height: '100vh', 
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'center',
   };
+
+
+
+  // נעילה של העמודים
+  // const isLogin = localStorage.getItem('isLogin');
+
+  // if ( !isLogin) {
+  //   return <Navigate replace to="/" />  
+  // }
 
   return (
     <div className="bg-gray-200 p-8" style={backgroundImageStyle}>

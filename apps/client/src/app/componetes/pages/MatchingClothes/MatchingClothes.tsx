@@ -9,10 +9,11 @@ const MatchingClothes: React.FC = () => {
   const [clothingOption, setClothingOption] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const clothingOptions = {
-    Men: ['Shirt', 'Pants', 'Jacket', 'Tie', 'Jeans', 'Suit'],
+  const clothingOptions={
+    Men: ['Shirt', 'Pants', 'Jacket', 'Tie', 'Jeans', 'Suit'] ,
     Women: ['Dress', 'Skirt', 'Blouse', 'Sweater', 'Jeans', 'Coat'],
   };
+
 
   const navigate = useNavigate();
 
@@ -31,13 +32,11 @@ const MatchingClothes: React.FC = () => {
 
   useEffect(() => {
     if (loading) {
-      // Simulate loading for 5 seconds
       const timeoutId = setTimeout(() => {
         setLoading(false);
-        navigate('/ClothesThatFit'); // Programmatically navigate to another page
+        navigate('/ClothesThatFit');
       }, 5000);
 
-      // Cleanup the timeout to avoid side effects
       return () => clearTimeout(timeoutId);
     }
   }, [loading, navigate]);

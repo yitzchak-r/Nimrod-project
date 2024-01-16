@@ -82,8 +82,10 @@ export function SignIn(props: HelloProps) {
 
   return (
     <div
-      className={`min-h-screen flex items-center justify-center bg-cover ${styles.page}`}
-    >
+    className={`min-h-screen flex items-center justify-center relative ${styles.page}`}
+    style={{ backgroundImage: 'url("https://th.bing.com/th/id/OIG.byxS1CXdR08nvO6_Mfll?pid=ImgGn")' }}
+  >
+
       <div className={styles.container}>
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -182,6 +184,7 @@ export function SignIn(props: HelloProps) {
                   >
                     Already have an account? Log in here.
                   </Link>
+
                 </div>
               </div>
             </form>

@@ -48,7 +48,7 @@ export function Login(props: HelloProps) {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-cover">
+<div className="min-h-screen flex items-center justify-center bg-cover" style={{ backgroundImage: 'url("https://th.bing.com/th/id/OIG.ox14ZE.j9TLjP0MC7kgs?w=270&h=270&c=6&r=0&o=5&pid=ImgGn")' }}>
       <div className="bg-white p-8 rounded-md w-full max-w-md">
         <h2 className="text-2xl font-bold text-gray-900 mb-6">
           We are happy to see you again today
