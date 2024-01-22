@@ -3,7 +3,7 @@ import HomePage from '../../pages/HomePage/HomePage';
 import MatchingClothes from '../../pages/MatchingClothes/MatchingClothes';
 import ClothesThatFit from '../../pages/ClothesThatFit/ClothesThatFit';
 import Login from '../../pages/Login/Login';
-import SignIn from '../../pages/SignIn/SignIn';
+import SignUp from '../../pages/SignUp/SignUp';
 import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage';
 import ResetPassword from '../../pages/ResetPassword/ResetPassword';
 import MainComponent from '../../pages/MainComponent/MainComponent';
@@ -14,14 +14,12 @@ const RouterDom = () => {
     <Routes>
             <Route path="/" element={<MainComponent/>} />
 
-      {/* <Route path="/" element={<><HomePage /></>} /> */}
-      {/* <Route path="/registeredUser" element={<><HomePage /></>} /> */}
       <Route path="/registeredUser" element={<><HomePage /></>} />
 
       <Route path="/Login" element={<Login/> } />
 
       <Route path="/resetPassword" element={<ResetPassword/> } />
-      <Route path="/SignIn" element={<SignIn />} />
+      <Route path="/SignIn" element={<SignUp />} />
 
       <Route path="/matchingClothes" element={<MatchingClothes />} />
       <Route
@@ -43,3 +41,31 @@ const RouterDom = () => {
 };
 
 export default RouterDom;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

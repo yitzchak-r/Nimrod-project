@@ -7,9 +7,10 @@ app.use(cors())
 
 app.use (
     postgraphile(
-        process.env.URL_LOCAL_POSTGRAS as string ,"public" ,   {
+        process.env.URL_LOCAL_POSTGRAS as string ,"users" ,   {
             watchPg:true,
-            graphiql: true
+            graphiql: true,
+            enhanceGraphiql: true
         }
         )
 );

@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { SketchPicker } from 'react-color';
 import { useNavigate } from 'react-router-dom';
 
+type Gender = "Men" | "Women";
+
+
 const MatchingClothes: React.FC = () => {
-  const [gender, setGender] = useState<string | null>(null);
+  const [gender, setGender] = useState<Gender | null>(null);
   const [clothingType, setClothingType] = useState<string | null>(null);
   const [color, setColor] = useState<string | null>(null);
   const [clothingOption, setClothingOption] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const clothingOptions={
+  const clothingOptions = {
     Men: ['Shirt', 'Pants', 'Jacket', 'Tie', 'Jeans', 'Suit'] ,
     Women: ['Dress', 'Skirt', 'Blouse', 'Sweater', 'Jeans', 'Coat'],
   };
@@ -17,7 +20,7 @@ const MatchingClothes: React.FC = () => {
 
   const navigate = useNavigate();
 
-  const handleGenderSelection = (selectedGender: string) => {
+  const handleGenderSelection = (selectedGender: Gender) => {
     setGender(selectedGender);
     setClothingType(null);
     setColor(null);
@@ -41,9 +44,41 @@ const MatchingClothes: React.FC = () => {
     }
   }, [loading, navigate]);
 
-  const handleStartProcessing = () => {
+
+
+  const handleStartProcessing = async () => {
     setLoading(true);
+
+    try {
+//שליחת המידע שהלקוח בחר לשרת
+      const response = await fetch('http://localhost:3001/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          gender,
+          clothingType,
+          color,
+          clothingOption,
+        }),
+      });
+
+      if (response.ok) {
+        console.error('Failed to send user selection to the server:', response.statusText);
+
+        console.log('User selection sent successfully');
+      } else {
+        console.error('Failed to send user selection to the server');
+      }
+    } catch (error) {
+      console.error('Error sending user selection:', error);
+    } finally {
+      setLoading(false);
+      navigate('/ClothesThatFit');
+    }
   };
+
 
   return (
 <div className="bg-gray-100 p-8 rounded-md shadow-md h-screen flex flex-col justify-center items-center" style={{ backgroundImage: 'url("https://th.bing.com/th/id/OIG.vCAYZzmk_EQoX0l06_Zv?pid=ImgGn")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
@@ -111,18 +146,20 @@ const MatchingClothes: React.FC = () => {
             Choose Clothing Option:
           </p>
           <select
-            className="border p-2 w-full rounded-md"
-            onChange={(e) => setClothingOption(e.target.value)}
-          >
-            <option value="" disabled selected>
-              Choose Clothing Option
-            </option>
-            {/* Add more clothing options as needed */}
-            <option value="Short">Short</option>
-            <option value="Long">Long</option>
-            <option value="Winter">Winter</option>
-            <option value="Summer">Summer</option>
-          </select>
+  className="border p-2 w-full rounded-md"
+  value={clothingOption || ""}
+  onChange={(e) => setClothingOption(e.target.value)}
+>
+  <option value="" disabled>
+    Choose Clothing Option
+  </option>
+  {/* Add more clothing options as needed */}
+  <option value="Short">Short</option>
+  <option value="Long">Long</option>
+  <option value="Winter">Winter</option>
+  <option value="Summer">Summer</option>
+</select>
+
         </div>
       )}
 

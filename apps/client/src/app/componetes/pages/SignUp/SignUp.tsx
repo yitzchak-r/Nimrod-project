@@ -1,4 +1,4 @@
-import styles from './signIn.module.css';
+import styles from './signUp.module.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import tRPCclient from '../../../utils/tRPC';
@@ -12,7 +12,7 @@ interface FormDataSignIn {
   passwordConfirmation: string;
 }
 
-export function SignIn(props: HelloProps) {
+export function SignUp(props: HelloProps) {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm<FormDataSignIn>();
   const [showPassword, setShowPassword] = useState(false);
@@ -195,4 +195,4 @@ export function SignIn(props: HelloProps) {
   );
 }
 
-export default SignIn;
+export default SignUp;

@@ -26,15 +26,10 @@ const HomePage: React.FC = () => {
 
 
 
-  // נעילה של העמודים
-  // const isLogin = localStorage.getItem('isLogin');
 
-  // if ( !isLogin) {
-  //   return <Navigate replace to="/" />  
-  // }
 
   return (
-    <div className="bg-gray-200 p-8" style={backgroundImageStyle}>
+    <div className="bg-gray-200 p-8 " style={backgroundImageStyle}>
       <div className="text-white">
         <h1 className="text-5xl font-bold mb-4">Welcome</h1>
         <p className="text-lg mb-6">This is where all the fun begins</p>
@@ -52,7 +47,12 @@ const HomePage: React.FC = () => {
   );
 };
 
+  // נעילה של העמודים
+  // const isLogin = localStorage.getItem('isLogin');
 
+  // if ( !isLogin) {
+  //   return <Navigate replace to="/" />  
+  // }
 
 
 export default HomePage;

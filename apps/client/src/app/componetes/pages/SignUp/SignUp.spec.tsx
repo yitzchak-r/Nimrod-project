@@ -1,10 +1,10 @@
 import { render } from "@testing-library/react";
 
-import SignIn from "./SignIn";
+import SignUp from "./SignUp";
 
 describe("SignIn", () => {
   it("should render successfully", () => {
-    const { baseElement } = render(<SignIn />);
+    const { baseElement } = render(<SignUp />);
     expect(baseElement).toBeTruthy();
   });
 });
